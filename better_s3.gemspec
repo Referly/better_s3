@@ -6,6 +6,7 @@ Gem::Specification.new do |s|
   s.name        = "better_s3"
   s.version     = BetterS3::VERSION
   s.date        = BetterS3::VERSION_DATE
+  s.license     = "MIT"
   s.summary     = "Idiomatic S3"
   s.description = "Interact with S3 buckets in an idiomatic fashion."
   s.authors     = ["Courtland Caldwell"]
