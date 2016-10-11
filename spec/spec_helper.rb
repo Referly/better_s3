@@ -1,0 +1,5 @@
+require_relative "simplecov_custom_profile"
+SimpleCov.start "better_s3"
+require "better_s3"
+require "byebug"
+require_relative "support/mocks"

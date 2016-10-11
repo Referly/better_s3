@@ -1,4 +1,4 @@
-module BetterS3
+class BetterS3
   # Provides configuration management for the BetterS3 gem
   class Configuration
     attr_accessor :bucket,
