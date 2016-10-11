@@ -3,6 +3,7 @@ class BetterS3
   class Configuration
     attr_accessor :bucket,
                   :tmp_dir_path,
+                  :region,
                   :aws_access_key_id,
                   :aws_secret_access_key
 
