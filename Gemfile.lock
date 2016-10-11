@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    better_s3 (0.1.0)
+    better_s3 (1.0.0)
       aws-sdk (~> 2)
 
 GEM
