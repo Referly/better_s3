@@ -21,18 +21,18 @@ describe BetterS3 do
 
     it "downloads a copy of the remote file to the local file system" do
       expect(s3_client).
-          to receive(:get_object).
-              with({
-                       bucket: BetterS3.configuration.bucket.to_s,
-                       key:    remote_file_name,
-                   },
-                   target: "#{BetterS3.configuration.tmp_dir_path}/#{remote_file_name}")
+        to receive(:get_object).
+        with({
+               bucket: BetterS3.configuration.bucket.to_s,
+               key:    remote_file_name,
+             },
+             target: "#{BetterS3.configuration.tmp_dir_path}/#{remote_file_name}")
 
       subject.get remote_file_name
     end
 
     it "returns the contents of the file" do
-      expect(subject.get remote_file_name).to eq remote_file_contents
+      expect(subject.get(remote_file_name)).to eq remote_file_contents
     end
   end
 
@@ -50,9 +50,9 @@ describe BetterS3 do
   describe "#delete_local_file_copy" do
     it "checks to see if the file exists locally" do
       expect(File).
-          to receive(:exist?).
-              with("#{BetterS3.configuration.tmp_dir_path}/#{remote_file_name}").
-              and_return false
+        to receive(:exist?).
+        with("#{BetterS3.configuration.tmp_dir_path}/#{remote_file_name}").
+        and_return false
 
       subject.delete_local_file_copy remote_file_name
     end

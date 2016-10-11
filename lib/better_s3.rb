@@ -44,7 +44,7 @@ class BetterS3
   # @return [String] the payload body from S3
   def get(remote_file_name)
     copy_file_from_s3 remote_file_name unless file_copied
-    @_payload_body ||= File.read(full_file_path remote_file_name)
+    @_payload_body ||= File.read(full_file_path(remote_file_name))
   end
 
   # Puts a Ruby hash to s3 as a file
@@ -59,7 +59,7 @@ class BetterS3
   #
   # @param remote_file_name [String] the name of the file in the s3 bucket (the s3 object key)
   def delete_local_file_copy(remote_file_name)
-    File.delete(full_file_path remote_file_name) if File.exist?(full_file_path remote_file_name)
+    File.delete(full_file_path(remote_file_name)) if File.exist?(full_file_path(remote_file_name))
   end
 
   private
@@ -70,12 +70,12 @@ class BetterS3
   # @param remote_file_name [String] the s3 bucket object key where the file should be put
   def push_object_to_s3(hsh, remote_file_name)
     s3.put_object(bucket: BetterS3.configuration.bucket.to_s,
-                  key:    "#{remote_file_name}",
+                  key:    remote_file_name.to_s,
                   body:   hsh)
   end
 
   def copy_file_from_s3(remote_file_name)
-    s3.get_object({ bucket: BetterS3.configuration.bucket.to_s, key: "#{remote_file_name}" },
+    s3.get_object({ bucket: BetterS3.configuration.bucket.to_s, key: remote_file_name.to_s },
                   target: full_file_path(remote_file_name))
     @file_copied = true
   end

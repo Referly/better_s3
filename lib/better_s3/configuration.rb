@@ -15,8 +15,8 @@ class BetterS3
     def configure_aws
       return configure_region_only unless aws_secret_access_key && aws_access_key_id
       Aws.config.update(
-          region:      region,
-          credentials: Aws::Credentials.new(aws_access_key_id, aws_secret_access_key),
+        region:      region,
+        credentials: Aws::Credentials.new(aws_access_key_id, aws_secret_access_key)
       )
     end
 
