@@ -1,6 +1,8 @@
 # better_s3
 An idiomatic pattern for working with s3 in Ruby
 
+[![CircleCI](https://circleci.com/gh/Referly/better_s3.svg?style=svg)](https://circleci.com/gh/Referly/better_s3)
+
 ## Get the contents of a remote file
 
 ```ruby
