@@ -66,4 +66,32 @@ describe BetterS3 do
       end
     end
   end
+
+  describe "#bucket" do
+    before do
+      BetterS3.configure do |c|
+        c.bucket = "mybucketwithahole"
+      end
+    end
+    it "is the current bucket name" do
+      expect(subject.bucket).to eq "mybucketwithahole"
+    end
+  end
+
+  describe "#bucket=" do
+    before do
+      BetterS3.configure do |c|
+        c.bucket = "mybucketwithahole"
+      end
+    end
+    it "sets the client's bucket name" do
+      subject.bucket = "otherbucket"
+      expect(subject.bucket).to eq "otherbucket"
+    end
+
+    it "leaves the configuration unmodified" do
+      subject.bucket = "otherbucket"
+      expect(BetterS3.configuration.bucket).to eq "mybucketwithahole"
+    end
+  end
 end

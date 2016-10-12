@@ -33,7 +33,12 @@ class BetterS3
     end
   end
 
-  attr_accessor :s3, :_payload_body, :file_copied
+  attr_accessor :s3, :_payload_body, :file_copied, :bucket
+
+  def initialize
+    @bucket = BetterS3.configuration.bucket
+  end
+
   def s3
     @s3 ||= Aws::S3::Client.new
   end
@@ -69,13 +74,13 @@ class BetterS3
   # @param hsh [String] the content to be put into s3 (it really should be JSON)
   # @param remote_file_name [String] the s3 bucket object key where the file should be put
   def push_object_to_s3(hsh, remote_file_name)
-    s3.put_object(bucket: BetterS3.configuration.bucket.to_s,
+    s3.put_object(bucket: bucket.to_s,
                   key:    remote_file_name.to_s,
                   body:   hsh)
   end
 
   def copy_file_from_s3(remote_file_name)
-    s3.get_object({ bucket: BetterS3.configuration.bucket.to_s, key: remote_file_name.to_s },
+    s3.get_object({ bucket: bucket.to_s, key: remote_file_name.to_s },
                   target: full_file_path(remote_file_name))
     @file_copied = true
   end

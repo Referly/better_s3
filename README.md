@@ -32,6 +32,26 @@ content = { foo: "bar" }.to_json
 s3.put "filename.ext", content
 ```
 
+## Override the client's bucket name
+
+If you need to change buckets, you don't have to create a new client or
+modify the configuration.
+
+```ruby
+require "better_s3"
+BetterS3.configure do |c|
+    c.bucket = "bucketname"
+end
+s3 = BetterS3.new
+s3.bucket
+ => "bucketname"
+s3.bucket = "otherbucket"
+s3.bucket
+ => "otherbucket"
+BetterS3.configuration.bucket
+ => "bucketname"
+```
+
 ## Configuration
 
 To configure BetterS3 use the configuration block pattern
