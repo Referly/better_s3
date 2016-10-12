@@ -29,7 +29,7 @@ s3.delete_local_file_copy "some-filename.txt"
 require "better_s3"
 s3 = BetterS3.new
 content = { foo: "bar" }.to_json
-s3.put content, "filename.ext"
+s3.put "filename.ext", content
 ```
 
 ## Configuration

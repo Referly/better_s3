@@ -49,9 +49,9 @@ class BetterS3
 
   # Puts a Ruby hash to s3 as a file
   #
-  # @param str [String] the string to be pushed to s3
   # @param remote_file_name [String] the s3 bucket object key where the file should be put
-  def put(str, remote_file_name)
+  # @param str [String] the string to be pushed to s3
+  def put(remote_file_name, str)
     push_object_to_s3 str, remote_file_name
   end
 

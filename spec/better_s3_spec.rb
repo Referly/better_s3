@@ -43,7 +43,7 @@ describe BetterS3 do
                                                      key:    remote_file_name,
                                                      body:   obj.to_json)
 
-      subject.put obj.to_json, remote_file_name
+      subject.put remote_file_name, obj.to_json
     end
   end
 
